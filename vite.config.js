@@ -27,5 +27,8 @@ export default defineConfig({
     host: '0.0.0.0',  // 允许外部访问（局域网）
     port: 5173,       // 自定义端口（默认5173）
     open: true,       // 自动打开浏览器（可选）
+    allowedHosts: [
+      'cc.liweijun.online',   // 允许访问此域名
+    ],
   },
 })
