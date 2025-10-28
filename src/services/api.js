@@ -2,7 +2,9 @@
 
 export const MOCK_API = false; // 全局模拟开关
 
-const BASE_URL = 'https://uscre.liweijun.online/api/v1';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+export { BASE_URL };
 
 async function _fetchAPI(endpoint, options = {}) {
     const url = `${BASE_URL}${endpoint}`;

@@ -62,7 +62,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
-import { MOCK_API } from '@/services/api.js';
+import { MOCK_API, BASE_URL } from '@/services/api.js';
 
 // --- 1. 邮箱/密码登录相关的状态 ---
 const email = ref('');
@@ -70,9 +70,8 @@ const password = ref('');
 const errorMessage = ref('');
 
 // --- 2. OAuth 登录相关的状态 ---
-const backendBaseUrl = 'https://uscre.liweijun.online/api/v1/auth';
-const googleLoginUrl = ref(`${backendBaseUrl}/google/login`);
-const githubLoginUrl = ref(`${backendBaseUrl}/github/login`); // 假设 GitHub 接口路径
+const googleLoginUrl = ref(`${BASE_URL}/auth/google/login`);
+const githubLoginUrl = ref(`${BASE_URL}/auth/github/login`); // 假设 GitHub 接口路径
 const isMockMode = ref(MOCK_API);
 
 // --- 3. 获取 Pinia Store 实例 ---
