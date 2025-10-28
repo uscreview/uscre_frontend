@@ -1,4 +1,3 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -26,9 +25,19 @@ const router = createRouter({
       component: () => import('../views/ForgotPasswordView.vue')
     },
     {
-      path: '/reset-password', // 注意: Vue Router 不支持 URL 查询参数作为路由定义的一部分，但可以在组件内读取
+      path: '/reset-password',
       name: 'reset-password',
       component: () => import('../views/ResetPasswordView.vue')
+    },
+    {
+      path: '/oauth-callback',
+      name: 'oauth-callback',
+      component: () => import('../views/OAuthCallbackView.vue')
+    },
+    {
+      path: '/verify-email',
+      name: 'verify-email',
+      component: () => import('../views/EmailVerificationView.vue')
     }
   ]
 })

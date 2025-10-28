@@ -7,7 +7,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          // 将所有以 'ion-' 开头的标签都视为自定义元素
+          isCustomElement: (tag) => tag.startsWith('ion-')
+        }
+      }
+    }),
     vueDevTools(),
   ],
   resolve: {

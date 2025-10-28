@@ -29,12 +29,14 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { isStrongPassword, PASSWORD_RULE_MESSAGE } from '@/utils/validators';
 
 const newPassword = ref('');
 const confirmPassword = ref('');
 const errorMessage = ref('');
 const token = ref(null);
 
+const isSubmitting = ref(false)
 const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
@@ -50,6 +52,14 @@ const handleResetPassword = async () => {
     errorMessage.value = '两次输入的密码不一致。';
     return;
   }
+
+    if (!isStrongPassword(newPassword.value)) {
+    errorMessage.value = PASSWORD_RULE_MESSAGE;
+    return;
+  }
+
+  isSubmitting.value = true;
+
   try {
     const result = await authStore.resetPassword(token.value, newPassword.value);
     alert(result.message);
